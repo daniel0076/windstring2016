@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="ui container" style="margin:auto;width:60%">
+    <h3 class="ui header">檢視報名資料</h3>
+    <div class="ui segments">
+        <div class="ui horizontal segments">
+            <div class="ui segment"style="width:25%">
+                <p>組別：{{item.category}}</p>
+            </div>
+            {% if item.pay_status == 0%}
+                <div class="ui red  segment"style="width:25%">
+                    <p style="display:inline">繳費狀態：未繳費</p>
+                    <button style="float:right" class="ui tiny green button">通知已繳費</button>
+            {%elif item.pay_status == 1%}
+                <div class="ui yellow  segment"style="width:25%">
+                    <p>繳費狀態：已通知</p>
+            {% else %}
+                <div class="ui green  segment"style="width:25%">
+                    <p>繳費狀態：已繳費</p>
+            {%endif%}
+                    </div>
+                </div>
+
+                <div class="ui horizontal segments">
+                    <div class="ui segment"style="width:25%">
+                        <p>聯絡人：{{item.contact}} </p>
+                    </div>
+                    <div class="ui segment" style="width:25%">
+                        <p>聯絡電話：{{item.cellphone}} </p>
+                    </div>
+                </div>
+                <div class="ui segment">
+                    <p>Facebook：<a href="{{item.fb_url}}" target="_blank">{{item.fb_url}}</a></p>
+                </div>
+                <div class="ui segment">
+                    <p>Email：{{item.email}}</p>
+                </div>
+                <div class="ui segment">
+                    <p>初賽歌曲：{{item.song}}</p>
+                </div>
+                <div class="ui horizontal segments">
+                    <div class="ui segment">
+                        <p>麥克風x{{item.mic}}</p>
+                    </div>
+                    <div class="ui segment">
+                        <p>麥架x{{item.mic_holder}}</p>
+                    </div>
+                    <div class="ui segment">
+                        <p>椅子x{{item.chair}}</p>
+                    </div>
+                </div>
+                <div class="ui segment">
+                    {% if item.player1%}
+                    <p>隊員1：{{item.player1}}</p>
+                    {%endif%}
+                    {%if item.player2%}
+                    <p>隊員2：{{item.player2}}</p>
+                    {%endif%}
+                    {%if item.player3%}
+                    <p>隊員3：{{item.player3}}</p>
+                    {%endif%}
+                    {%if item.player4%}
+                    <p>隊員4：{{item.player4}}</p>
+                    {%endif%}
+                    {%if item.player5%}
+                    <p>隊員5：{{item.player5}}</p>
+                    {%endif%}
+                    {%if item.player6%}
+                    <p>隊員6：{{item.player6}}</p>
+                    {%endif%}
+                    {%if item.player7%}
+                    <p>隊員7：{{item.player7}}</p>
+                    {%endif%}
+                </div>
+                <div class="ui segment">
+                    <p>備註：{{item.ps}}</p>
+                </div>
+            </div>
+        </div>
+        {% endblock %}

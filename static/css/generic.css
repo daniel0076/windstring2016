@@ -1,0 +1,8 @@
+.ui.secondary.menu .ui.dropdown > .menu {
+  margin-top:0;
+}
+
+.secondary.menu .ui.dropdown {
+  padding-top: 0.6em;
+  padding-bottom: 0.6em;
+}

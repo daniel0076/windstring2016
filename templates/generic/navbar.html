@@ -1,0 +1,83 @@
+<style type="text/css">
+body {
+  background-color: #FFFFFF;
+}
+    .ui.menu .item img.logo {
+      margin-right: 1.5em;
+    }
+    .main.container {
+      margin-top: 7em;
+    }
+    .wireframe {
+      margin-top: 2em;
+    }
+    .ui.footer.segment {
+      margin: 5em 0em 0em;
+      padding: 5em 0em;
+    }
+</style>
+
+<div class="ui secondary menu" style="margin:auto;margin-top:2em;width:90%">
+  <a href="/" class="header item">
+    2016 交大風弦盃
+  </a>
+  <div href="#" class="ui simple dropdown item">
+    <i class="gamepad icon"></i>
+    關於風弦<i class="dropdown icon"></i>
+    <div class="menu">
+      <div class="item">最新消息</div>
+      <div class="item">風弦事記</div>
+    </div>
+  </div>
+  <div href="#" class="ui simple dropdown item">
+    <i class="user icon"></i>
+    參賽資訊<i class="dropdown icon"></i>
+    <div class="menu">
+      <a class="item">比賽規則</a>
+      <a class="item" href="{% url 'register' %}">報名</a>
+    </div>
+  </div>
+  <div href="#" class="ui simple dropdown item">
+    <i class="users icon"></i>
+    評審介紹<i class="dropdown icon"></i>
+    <div class="menu">
+      <div class="item">初賽評審</div>
+      <div class="item">決賽評審</div>
+    </div>
+  </div>
+  <a href="#" class="item">
+    <i class="phone icon"></i>
+    連絡我們
+  </a>
+
+  {% if not request.session.auth %}
+  <div href="#" class="ui simple dropdown right item login">
+    <i class="user icon"></i>
+    選手登入
+    <div class="menu" style="width:280%" ng-app="ws" ng-controller="wsLogin" >
+      <form class="ui form" style="margin:1em;">
+        <div class="field">
+          <label>Email</label>
+          <input name="email" ng-model="form.email" placeholder="champian@wind.string" type="text">
+        </div>
+        <div class="field">
+          <label>手機</label>
+          <input name="cellphone" ng-model="form.cellphone" placeholder="格式：0987-654321" type="text">
+        </div>
+        <button class="ui tiny blue button" ng-click="login()">Submit</button>
+        <p style="display:inline;margin-left:1em;color:{[{col}]}">{[{msg}]}</p>
+      </form>
+    </div>
+  </div>
+  {% else %}
+  <div href="#" class="ui simple dropdown right item">
+    <i class="user icon"></i>
+    {{request.session.email}}
+    <i class="dropdown icon"></i>
+    <div class="menu">
+      <a class="item" href="{% url 'details' %}">檢視報名資料</a>
+      <a class="item" href="{% url 'logout' %}">登出</a>
+    </div>
+  </div>
+  {% endif%}
+</div>

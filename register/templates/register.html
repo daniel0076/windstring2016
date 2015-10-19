@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="ui container" style="width:40%">
+  <form class="ui form" method="POST">
+    {% csrf_token %}
+    <h3 class="ui dividing header">基本資料</h3>
+    <br>
+    <div class="two fields">
+      <div class="required field">
+        <label>{{form.category.label_tag}}</label>
+        {{form.category}}
+      </div>
+      <div class="required field">
+        <label>{{form.contact.label_tag}}</label>
+        {{form.contact}}
+      </div>
+    </div>
+    <div class="two fields">
+      <div class="required field">
+        <label>{{form.cellphone.label_tag}}</label>
+        {{form.cellphone.help_text}}
+        {{form.cellphone}}
+
+      </div>
+      <div class="required field">
+        <label>{{form.email.label_tag}}</label>
+        {{form.email.help_text}}
+        {{form.email}}
+      </div>
+    </div>
+
+      <div class="required field">
+        <label>{{form.fb_url.label_tag}}</label>
+        {{form.fb_url}}
+      </div>
+    <div class="required field">
+      <label>{{form.song.label_tag}}</label>
+      {{form.song}}
+    </div>
+    <div class="field">
+      <label>{{form.group_name.label_tag}}</label>
+      {{form.group_name}}
+    </div>
+
+    <h3 class="ui dividing header">器材需求</h3>
+    <br>
+    <div class="two fields">
+      <div class="field">
+        <label>{{form.mic.label_tag}}</label>
+        {{form.mic.help_text}}
+        {{form.mic}}
+      </div>
+      <div class="field">
+        <label>{{form.mic_holder.label_tag}}</label>
+        {{form.mic_holder.help_text}}
+        {{form.mic_holder}}
+      </div>
+      <div class="field">
+        <label>{{form.chair.label_tag}}</label>
+        {{form.chair.help_text}}
+        {{form.chair}}
+      </div>
+    </div>
+    <h3 class="ui dividing header">樂手編制</h3>
+      <div class="required field">
+        <label>{{form.player1.label_tag}}</label>
+        {{form.player1.help_text}}
+        {{form.player1}}
+      </div>
+      <div class="field">
+        <label>{{form.player2.label_tag}}</label>
+        {{form.player2.help_text}}
+        {{form.player2}}
+      </div>
+      <div class="field">
+        <label>{{form.player3.label_tag}}</label>
+        {{form.player3.help_text}}
+        {{form.player3}}
+      </div>
+      <div class="field">
+        <label>{{form.player4.label_tag}}</label>
+        {{form.player4.help_text}}
+        {{form.player4}}
+      </div>
+      <div class="field">
+        <label>{{form.player5.label_tag}}</label>
+        {{form.player5.help_text}}
+        {{form.player5}}
+      </div>
+      <div class="field">
+        <label>{{form.player6.label_tag}}</label>
+        {{form.player6.help_text}}
+        {{form.player6}}
+      </div>
+      <div class="field">
+        <label>{{form.player7.label_tag}}</label>
+        {{form.player7.help_text}}
+        {{form.player7}}
+      </div>
+      <div class="field">
+        <label>{{form.ps.label_tag}}</label>
+        {{form.ps}}
+      </div>
+
+    <button class="ui button" type="submit">報名</button>
+  </form>
+</div>
+{% endblock %}
