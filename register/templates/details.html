@@ -8,7 +8,11 @@
 {% block content %}
 
 <div class="ui accordion" style="width:70%;margin:auto;margin-top:2em;">
+{% if request.session.auth %}
 <h3 class="ui header">檢視報名資料</h3>
+{% else %}
+<h3 class="ui header">請先登入才能看報名資料ㄛ</h3>
+{%endif%}
     {% for item in competitors %}
     <div class="title">
         <table class="ui celled table">

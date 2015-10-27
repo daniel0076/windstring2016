@@ -17,14 +17,14 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
-from register.views import register,view,details,viewByCat,auth,logout
+from register.views import register,view,details,viewByCat,auth,user_logout
 from windstring2016.views import index
 
 urlpatterns = [
     url(r'^$',register,name='register'),
     url(r'^view/$',view,name='view'),
     url(r'^details$',details,name='details'),
-    url(r'^logout$',logout,name='logout'),
+    url(r'^logout$',user_logout,name='logout'),
     url(r'^viewcat/(?P<cat>[0-2]+)/$',viewByCat),
     url(r'^auth$',auth,name='auth'),
 ]

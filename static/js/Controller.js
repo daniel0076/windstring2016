@@ -8,12 +8,12 @@ var ctrl = angular.module('ws', []).config(function($interpolateProvider,$httpPr
 ctrl.controller('wsLogin',function($scope, $window,$http,$sce,$compile,$timeout) {
   $scope.login=function(){
     $http.post('/register/auth',$scope.form).success(function(response) {
-      $scope.msg=response['msg'];
+      $scope.msg=response.msg
 
-      if(response['status']){
+      if(response.success){
         $scope.col="green";
         $timeout(function(){
-          $window.location.href="/register/details";
+          $window.location.href=response.rdr;
         }, 1000);
 
       }else{
