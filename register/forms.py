@@ -17,6 +17,9 @@ class RegisterForm(forms.ModelForm):
             self.fields['group_name'].widget.attrs.update({
                 'placeholder':'有團名的話，請告訴我們哦'
                 })
+            self.fields['cellphone'].widget.attrs.update({
+                'placeholder':'0987654321'
+                })
 
 
     def clean_cid(self):

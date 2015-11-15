@@ -6,76 +6,71 @@
 {%endblock%}
 
 {% block content %}
-<div class="ui accordion" style="width:70%;margin:auto;">
-    {% for item in competitors %}
-    <div class="title">
-        <table class="ui celled table">
-            <tbody>
-                <tr>
-                    <td>{{item.category}}</td>
-                    <td style="width:12%"> {{item.contact}} </td>
-                    <td>{{item.cellphone}}</td>
-                    <td>麥克風x{{item.mic}}</td>
-                    <td>麥架x{{item.mic_holder}}</td>
-                    <td>椅子x{{item.chair}}</td>
-                    <td><a href="{{item.fb_url}}" target="_blank">Facebook</a></td>
-                    {% if item.pay_status == 0%}
-                    <td class="negative">未繳費</td>
-                    {%elif item.pay_status == 1%}
-                    <td class="warning">已通知</td>
-                    {% else %}
-                    <td class="positive">已繳費</td>
-                    {%endif%}
+<div class="ui accordion" style="width:70%;margin:auto;" ng-app="ws" ng-controller="wsPay">
+	{% for item in competitors %}
+	<div class="title">
+		<table class="ui celled table">
+			<tbody>
+				<tr>
+					<td>{{item.category}}</td>
+					<td style="width:12%"> {{item.contact}} </td>
+					<td>{{item.cellphone}}</td>
+					<td>麥克風x{{item.mic}}</td>
+					<td>麥架x{{item.mic_holder}}</td>
+					<td>椅子x{{item.chair}}</td>
+					<td><a href="{{item.fb_url}}" target="_blank">Facebook</a></td>
+					{% if item.pay_status == 0%}
+					<td class="negative">未繳費</td>
+					{%elif item.pay_status == 1%}
+					<td class="warning">已通知</td>
+					{% else %}
+					<td class="positive">已繳費</td>
+					{%endif%}
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="content">
+		<div class="ui segment">
+			<div class="ui two column middle aligned very relaxed stackable grid">
+				<div class="column">
+					{% if item.player1%}
+					<p>隊員1：{{item.player1}}</p>
+					{%endif%}
+					{%if item.player2%}
+					<p>隊員2：{{item.player2}}</p>
+					{%endif%}
+					{%if item.player3%}
+					<p>隊員3：{{item.player3}}</p>
+					{%endif%}
+					{%if item.player4%}
+					<p>隊員4：{{item.player4}}</p>
+					{%endif%}
+					{%if item.player5%}
+					<p>隊員5：{{item.player5}}</p>
+					{%endif%}
+					{%if item.player6%}
+					<p>隊員6：{{item.player6}}</p>
+					{%endif%}
+					{%if item.player7%}
+					<p>隊員7：{{item.player7}}</p>
+					{%endif%}
+					<p>備註：{{item.ps}}</p>
+				</div>
+				<div class="right aligned column">
+					<p>連絡Email：{{item.email}}</p>
+					{% if item.pay_status != 2%}
+					<button class="ui green tiny button" ng-click="confirmPay({{item.gid}})">確認繳費</button>
+					{%endif%}
 
+					{%if item.last5%}
+					<span style="margin-right:1em;">末五碼：{{item.last5}}</span>
+					{%endif%}
 
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="content">
-        <div class="ui segment">
-            <div class="ui two column middle aligned very relaxed stackable grid">
-                <div class="column">
-                    {% if item.player1%}
-                    <p>隊員1：{{item.player1}}</p>
-                    {%endif%}
-                    {%if item.player2%}
-                    <p>隊員2：{{item.player2}}</p>
-                    {%endif%}
-                    {%if item.player3%}
-                    <p>隊員3：{{item.player3}}</p>
-                    {%endif%}
-                    {%if item.player4%}
-                    <p>隊員4：{{item.player4}}</p>
-                    {%endif%}
-                    {%if item.player5%}
-                    <p>隊員5：{{item.player5}}</p>
-                    {%endif%}
-                    {%if item.player6%}
-                    <p>隊員6：{{item.player6}}</p>
-                    {%endif%}
-                    {%if item.player7%}
-                    <p>隊員7：{{item.player7}}</p>
-                    {%endif%}
-                    <p>備註：{{item.ps}}</p>
-                </div>
-                <div class="right aligned column">
-                    <p>連絡Email：{{item.email}}</p>
-                    {% if item.pay_status == 0%}
-                    <button class="ui green tiny button">確認繳費</button>
-                    {%elif item.pay_status == 1%}
-                        {%if item.last5%}
-                        <span style="margin-right:1em;">末五碼：{{item.last5}}</span>
-                        {%endif%}
-                    <button class="ui green tiny button">確認繳費</button>
-                    {% else %}
-                    <p>末五碼：</p>
-                    {%endif%}
-
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endfor%}
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endfor%}
 </div>
 {% endblock %}

@@ -4,6 +4,7 @@ from django.http import  HttpResponseRedirect,JsonResponse
 from register.models import Group
 from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 import json
 
@@ -40,9 +41,34 @@ def details(request,query_email=None,query_cellphone=None):
     competitors=Group.objects.filter(email=query_email,cellphone=query_cellphone)
     return render(request,'details.html',locals())
 
-def notify(request):
-    pass
+@ensure_csrf_cookie
+def notifyPay(request):
+    if request.body:
+        data=request.body.decode()
+        gid=json.loads(data).get('gid')
+        user_email=request.session.get('email')
+        user_cellphone=request.session.get('cellphone')
+        notify_item=Group.objects.get(gid=gid,email=user_email,cellphone=user_cellphone)
+        if notify_item and request.session.get('auth'):
+            notify_item.pay_status=1
+            notify_item.save()
+            return JsonResponse({'success':True})
+    else:
+        return JsonResponse({'success':False})
 
+def confirmPay(request):
+    if request.body:
+        data=request.body.decode()
+        gid=json.loads(data).get('gid')
+        notify_item=Group.objects.get(gid=gid)
+        if notify_item and request.user.is_authenticated():
+            notify_item.pay_status=2
+            notify_item.save()
+            return JsonResponse({'success':True})
+    else:
+        return JsonResponse({'success':False})
+
+@ensure_csrf_cookie
 def auth(request):
     res=dict()
     res['msg']="查無資料"
@@ -82,7 +108,7 @@ def auth(request):
     return JsonResponse(res)
 
 
-def user_logout(request):
+def userLogout(request):
     logout(request)
     request.session['auth']=False
     request.session['email']=None

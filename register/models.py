@@ -5,7 +5,7 @@ from django.utils import timezone
 # Create your models here.
 
 def validate_mobile(string):
-    RegexValidator(regex='^\d{4}-\d{6}$',message='格式：0987-654321')(string)
+    RegexValidator(regex='^\d{10}$',message='格式：0987654321')(string)
 
 class Group(models.Model):
     CATEGORYS = (
@@ -23,7 +23,7 @@ class Group(models.Model):
     category = models.CharField(u'參賽組別',max_length=3,choices=CATEGORYS,default=u'個人組')
     song = models.CharField(u'預賽歌曲名',max_length=30)
     final_song = models.CharField(u'決賽歌曲名',max_length=30,blank=True)
-    cellphone= models.CharField(u'手機號碼',max_length=11,validators=[validate_mobile],help_text='聯絡人手機（團體組請用一個代表）')
+    cellphone= models.CharField(u'手機號碼',max_length=10,validators=[validate_mobile],help_text='聯絡人手機（團體組請用一個代表）')
     email= models.EmailField(u'Email',help_text='繳費、相關資訊會寄給您')
     contact= models.CharField(u'聯絡人姓名',max_length=50)
     fb_url= models.CharField(u'Facebook 連結',max_length=100,help_text='聯絡人FB')
