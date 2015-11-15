@@ -51,11 +51,12 @@ body {
   </a>
 
   {% if not request.session.auth %}
-  <div href="#" class="ui simple dropdown right item login">
+  <div href="#" class="ui dropdown right item login">
     <i class="user icon"></i>
     選手登入
     <div class="menu" style="width:280%" ng-app="ws" ng-controller="wsLogin" >
-      <form class="ui form" style="margin:1em;">
+      <div class="item" style="display:none"></div>
+      <form class="ui form" style="margin:1em;width:18em;">
         <div class="field">
           <label>Email</label>
           <input name="email" ng-model="form.email" placeholder="champian@wind.string" type="text">
