@@ -26,11 +26,13 @@ def register(request):
 @login_required(login_url='/')
 def view(request):
     competitors=Group.objects.all()
+    title="所有組別"
     return render(request,'view.html',locals())
 
 def viewByCat(request,cat):
     categorys=['個人組','團體組','演奏組']
     competitors=Group.objects.filter(category=categorys[int(cat)])
+    title=categorys[int(cat)]
     return render(request,'view.html',locals())
 
 def details(request,query_email=None,query_cellphone=None):

@@ -25,7 +25,7 @@ urlpatterns = [
     url(r'^view/$',view,name='view'),
     url(r'^details$',details,name='details'),
     url(r'^logout$',userLogout,name='logout'),
-    url(r'^viewcat/(?P<cat>[0-2]+)/$',viewByCat),
+    url(r'^view/(?P<cat>[0-2]+)/$',viewByCat),
     url(r'^auth$',auth,name='auth'),
     url(r'^notify$',notifyPay,name='notify'),
     url(r'^confirm$',confirmPay,name='confirm'),
