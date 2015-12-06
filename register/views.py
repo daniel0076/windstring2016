@@ -28,7 +28,7 @@ def view(request):
     competitors=Group.objects.all()
     title="所有組別"
     return render(request,'view.html',locals())
-
+@login_required(login_url='/')
 def viewByCat(request,cat):
     categorys=['個人組','團體組','演奏組']
     competitors=Group.objects.filter(category=categorys[int(cat)])
