@@ -4,3 +4,5 @@ settings.py
 *.swp
 __*__.*
 __*__/
+static/
+*/migrations/*
