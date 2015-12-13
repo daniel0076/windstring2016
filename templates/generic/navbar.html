@@ -1,55 +1,10 @@
-<style type="text/css">
-body {
-  background-color: #FFFFFF;
-}
-    .ui.menu .item img.logo {
-      margin-right: 1.5em;
-    }
-    .main.container {
-      margin-top: 7em;
-    }
-    .wireframe {
-      margin-top: 2em;
-    }
-    .ui.footer.segment {
-      margin: 5em 0em 0em;
-      padding: 5em 0em;
-    }
-</style>
-
-<div class="ui secondary menu" style="margin:auto;margin-top:2em;margin-bottom:2em;width:90%">
-  <a href="/" class="header item">
+<div class="ui secondary menu " style="width:90%;margin:auto;margin-top:1em;">
+  <a class="header item">
     2016 交大風弦盃
   </a>
-  <div href="#" class="ui simple dropdown item">
-    <i class="gamepad icon"></i>
-    關於風弦<i class="dropdown icon"></i>
-    <div class="menu">
-      <div class="item">最新消息</div>
-      <div class="item">風弦事記</div>
-    </div>
-  </div>
-  <div href="#" class="ui simple dropdown item">
-    <i class="user icon"></i>
-    參賽資訊<i class="dropdown icon"></i>
-    <div class="menu">
-      <a class="item">比賽規則</a>
-      <a class="item" href="{% url 'register' %}">報名</a>
-    </div>
-  </div>
-  <div href="#" class="ui simple dropdown item">
-    <i class="users icon"></i>
-    評審介紹<i class="dropdown icon"></i>
-    <div class="menu">
-      <div class="item">初賽評審</div>
-      <div class="item">決賽評審</div>
-    </div>
-  </div>
-  <a href="#" class="item">
-    <i class="phone icon"></i>
-    連絡我們
+  <a href="/" class="item">
+		回首頁
   </a>
-
   {% if not request.session.auth %}
   <div href="#" class="ui dropdown right item login">
     <i class="user icon"></i>

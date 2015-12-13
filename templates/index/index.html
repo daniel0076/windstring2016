@@ -14,14 +14,14 @@
 	</head>
 	<body ng-app="ws" ng-controller="wsIndex">
 		<div class="container">
+			{% include "generic/navtop.html" %}
 			<div class="flexbox">
 				<div class="fixed">
-					<img class="ui large image" src="http://tympanus.net/PausePlay/images/play.png">
 				</div>
 				<div class="flex-item">
 					<div class="ui segment intro">
 						<h2 class="ui header">
-							<i class="send icon"></i>
+				<img class="ui small image" src={% static "images/logo.png" %}>
 							<div class="content">
 								<span ng-bind="title"></span>
 								<div class="sub header" ng-bind="subtitle">
@@ -30,15 +30,15 @@
 						</h2>
 						<div class="ui divider"></div>
 						<div class="description">
-							<p ng-bind="desc"></p>
+							<p ng-bind-html="desc"></p>
 						</div>
 					</div>
 				</div>
 			</div>
-			{% include "generic/navmenu.html" %}
+			{% include "generic/navbottom.html" %}
 		</div>
 		<div class="entry">
-				<img class="ui large image" src="http://tympanus.net/PausePlay/images/play.png">
+				<img class="ui image" src={% static "images/triangle.png" %}>
 		</div>
 
 	</body>

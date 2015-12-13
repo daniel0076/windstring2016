@@ -47,21 +47,20 @@ ctrl.controller('wsPay',function($scope,$http,$window,$compile) {
 });
 
 ctrl.controller('wsIndex',function($scope, $window,$http,$sce,$compile,$timeout) {
+	$scope.navigate=function(index){
+		$scope.title=$scope.data[index].title;
+		$scope.subtitle=$scope.data[index].subtitle;
+		$scope.desc=$sce.trustAsHtml($scope.data[index].desc);
+	}
 	var init=function(){
 		$http.get('static/content.json').then(function(res){
 			$scope.data=res.data;
 			//init value
 			var init_data="story";
-			$scope.title=$scope.data[init_data].title;
-			$scope.subtitle=$scope.data[init_data].subtitle;
-			$scope.desc=$scope.data[init_data].desc;
+			$scope.navigate(init_data);
 		});
 
 	}
-	$scope.navigate=function(index){
-		$scope.title=$scope.data[index].title;
-		$scope.subtitle=$scope.data[index].subtitle;
-		$scope.desc=$scope.data[index].desc;
-	}
+
 	init();
 });
