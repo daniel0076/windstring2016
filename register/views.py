@@ -28,6 +28,7 @@ def view(request):
     competitors=Group.objects.all()
     title="所有組別"
     return render(request,'view.html',locals())
+
 @login_required(login_url='/')
 def viewByCat(request,cat):
     categorys=['個人組','團體組','演奏組']
@@ -58,6 +59,7 @@ def notifyPay(request):
     else:
         return JsonResponse({'success':False})
 
+@ensure_csrf_cookie
 def confirmPay(request):
     if request.body:
         data=request.body.decode()
