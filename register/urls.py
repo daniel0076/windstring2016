@@ -17,7 +17,7 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
-from register.views import register,view,details,viewByCat,auth,userLogout,notifyPay,confirmPay
+from register.views import register,view,details,viewByCat,auth,userLogout,notifyPay,confirmPay,deleteItem
 from windstring2016.views import index
 
 urlpatterns = [
@@ -29,4 +29,5 @@ urlpatterns = [
     url(r'^auth$',auth,name='auth'),
     url(r'^notify$',notifyPay,name='notify'),
     url(r'^confirm$',confirmPay,name='confirm'),
+    url(r'^delete$',deleteItem,name='delete'),
 ]

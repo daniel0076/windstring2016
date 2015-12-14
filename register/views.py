@@ -30,6 +30,18 @@ def view(request):
     return render(request,'view.html',locals())
 
 @login_required(login_url='/')
+def deleteItem(request):
+    if request.body:
+        data=request.body.decode()
+        gid=json.loads(data).get('gid')
+        item=Group.objects.get(gid=gid)
+        if item:
+            item.delete()
+            return JsonResponse({'success':True})
+    else:
+        return JsonResponse({'success':False})
+
+@login_required(login_url='/')
 def viewByCat(request,cat):
     categorys=['個人組','團體組','演奏組']
     competitors=Group.objects.filter(category=categorys[int(cat)])

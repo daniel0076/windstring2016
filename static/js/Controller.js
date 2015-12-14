@@ -25,6 +25,19 @@ ctrl.controller('wsLogin',function($scope, $window,$http,$sce,$compile,$timeout)
 });
 
 ctrl.controller('wsPay',function($scope,$http,$window,$compile) {
+	$scope.deleteItem=function(gid){
+		var data={"gid":gid};
+		$http.post('/register/delete',data).success(function(response) {
+			if(response.success){
+				$window.alert("已刪除");
+				$window.location.href='/register/details';
+			}else{
+				$window.alert("刪除失敗，請檢查權限或聯絡管理員");
+				$window.location.href='/register/details';
+			}
+		});
+	};
+
 	$scope.notify=function(gid){
 		var data={"gid":gid};
 		$http.post('/register/notify',data).success(function(response) {
@@ -48,19 +61,20 @@ ctrl.controller('wsPay',function($scope,$http,$window,$compile) {
 
 ctrl.controller('wsIndex',function($scope, $window,$http,$sce,$compile,$timeout) {
 	$scope.navigate=function(index){
-		$scope.title=$scope.data[index].title;
-		$scope.subtitle=$scope.data[index].subtitle;
-		$scope.desc=$sce.trustAsHtml($scope.data[index].desc);
-	}
-	var init=function(){
-		$http.get('static/content.json').then(function(res){
-			$scope.data=res.data;
-			//init value
-			var init_data="story";
-			$scope.navigate(init_data);
-		});
+		$scope.title=$scope.templates[index].name;
+		$scope.subtitle=$scope.templates[index].subtitle;
+		$scope.template = $scope.templates[index];
+	};
 
-	}
+	var init=function(){
+		$scope.templates = {
+			"story":{ name: '風弦故事',subtitle:"This's how everything started", url: 'static/story.html'},
+			"reg":{ name: '參加風弦',subtitle:"Let's play together", url: 'static/reg.html'},
+			"transportation":{ name: '交通資訊',subtitle:"Transfer Information", url: 'static/trans.html'},
+			"contact":{ name: '聯絡我們',subtitle:"Contact us", url: 'static/contact.html'}
+		};
+		$scope.navigate('story');
+	};
 
 	init();
 });
