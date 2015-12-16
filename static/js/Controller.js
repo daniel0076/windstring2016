@@ -30,10 +30,10 @@ ctrl.controller('wsPay',function($scope,$http,$window,$compile) {
 		$http.post('/register/delete',data).success(function(response) {
 			if(response.success){
 				$window.alert("已刪除");
-				$window.location.href='/register/details';
+				$window.location.href='/register/view';
 			}else{
 				$window.alert("刪除失敗，請檢查權限或聯絡管理員");
-				$window.location.href='/register/details';
+				$window.location.href='/register/view';
 			}
 		});
 	};

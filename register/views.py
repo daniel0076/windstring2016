@@ -16,9 +16,15 @@ def register(request):
         form= RegisterForm(request.POST)
         if form.is_valid():
             user=form.save()
-            return redirect('/')
+            query_email=request.POST.get('email')
+            query_cellphone=request.POST.get('cellphone')
+            request.session['auth']=True
+            request.session['email']=query_email
+            request.session['cellphone']=query_cellphone
+            return redirect('/register/details')
         else:
             print(form.errors)
+
 
     form= RegisterForm()
     return render(request,'register.html',locals())
