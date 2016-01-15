@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content">
+
+	<h3>風弦盃抽獎機-抽獎名單</h3>
+	<div class="ui nine column grid">
+	{% for value in candidates %}
+	<div class="column">
+		<div class="ui label"> {{value}} </div>
+	</div>
+	{% endfor %}
+	</div>
+
+	<h3>獎項</h3>
+	{% for key,list in selected.items %}
+	<div class="ui header">
+		{{key}}
+	</div>
+	{% for winner,comments in list.items %}
+		<div class="ui green label reply" data-content="{{comments}}">{{forloop.counter}} - {{winner}}</div>
+	{% endfor %}
+	{% endfor %}
+
+<div>
+{% endblock %}
