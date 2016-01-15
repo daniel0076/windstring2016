@@ -19,9 +19,11 @@ from django.conf import settings
 from django.contrib import admin
 import register.urls
 from windstring2016.views import index
+from windstring2016.views import lottery
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^register/',include(register.urls)),
     url(r'^$',index,name='home'),
+    url(r'^lottery$',lottery,name='lottery'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

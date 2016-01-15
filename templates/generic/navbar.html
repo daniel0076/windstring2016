@@ -33,6 +33,7 @@
     <div class="menu">
       {% if user.is_authenticated %}
       <a class="item" href="{% url 'view' %}">管理報名資料</a>
+      <a class="item" href="{% url 'lottery' %}">粉專抽獎機</a>
       {%else%}
       <a class="item" href="{% url 'details' %}">檢視報名資料</a>
       {%endif%}

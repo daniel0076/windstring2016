@@ -1,5 +1,6 @@
 $(document).ready(function(){
 $('.ui.dropdown').dropdown();
+$('.reply').popup() ;
 
 $('.ui.form') .form({
 		on:'blur',
