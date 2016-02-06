@@ -18,6 +18,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
 from register.views import register,view,details,viewByCat,auth,userLogout,notifyPay,confirmPay,deleteItem
+from . import views
 from windstring2016.views import index
 
 urlpatterns = [
@@ -30,4 +31,6 @@ urlpatterns = [
     url(r'^notify$',notifyPay,name='notify'),
     url(r'^confirm$',confirmPay,name='confirm'),
     url(r'^delete$',deleteItem,name='delete'),
+    url(r'^mailing$',views.send_email,name='mailing'),
+    url(r'^export$',views.exportExcel,name='export'),
 ]
