@@ -19,6 +19,17 @@ def register(request):
 	if request.POST:
 		form= RegisterForm(request.POST)
 		if form.is_valid():
+			#send notify email
+			with open(settings.BASE_DIR+"/register/notifyMail.html","r") as f:
+				msg=f.read()
+			info=request.POST
+			to=list()
+			to.append(info['email'])
+			msg=msg.format(info['contact'],info['category'],info['cellphone'],info['song']
+					,info['group_name'],info['mic'],info['mic_holder'],info['chair'])
+			send_mail('感謝你報名2016風弦盃，請確認報名資訊', 'Here is the message.', '交通大學風弦盃 <windstring@guitar.nctu.me>',
+				to,html_message=msg, fail_silently=False)
+
 			user=form.save()
 			query_email=request.POST.get('email')
 			query_cellphone=request.POST.get('cellphone')
@@ -143,8 +154,9 @@ def userLogout(request):
 
 @login_required
 def send_email(request):
-	#send_mail('test here', 'Here is the message.', '交通大學風弦盃 <windstring@guitar.nctu.me>',
-	#		['idaniel.twc@gmail.com'], fail_silently=False)
+
+		#send_mail('歡迎參加2016年 交通大學 風弦盃吉他比賽', 'Here is the message.', '交通大學風弦盃 <windstring@guitar.nctu.me>',
+		#	tmp,html_message=msg, fail_silently=False)
 	return render(request,'mailing.html',locals())
 
 
