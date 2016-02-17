@@ -20,7 +20,7 @@ def register(request):
 		form= RegisterForm(request.POST)
 		if form.is_valid():
 			#send notify email
-			with open(settings.BASE_DIR+"/register/notifyMail.html","r") as f:
+			with open(settings.BASE_DIR+"/register/mail_templates/notifyMail.html","r") as f:
 				msg=f.read()
 			info=request.POST
 			to=list()
@@ -47,6 +47,7 @@ def register(request):
 @login_required(login_url='/')
 def view(request):
 	competitors=Group.objects.all()
+	cnt=competitors.count()
 	title="所有組別"
 	return render(request,'view.html',locals())
 
@@ -67,6 +68,7 @@ def viewByCat(request,cat):
 	categorys=['個人組','團體組','演奏組']
 	competitors=Group.objects.filter(category=categorys[int(cat)])
 	title=categorys[int(cat)]
+	cnt=competitors.count()
 	return render(request,'view.html',locals())
 
 def details(request,query_email=None,query_cellphone=None):
@@ -88,6 +90,12 @@ def notifyPay(request):
 		if notify_item and request.session.get('auth'):
 			notify_item.pay_status=1
 			notify_item.save()
+			#send email
+			with open(settings.BASE_DIR+"/register/mail_templates/informPay.html","r") as f:
+				msg=f.read()
+				msg=msg.format(notify_item.contact,notify_item.category)
+			send_mail('風弦盃報名費-付款通知', 'Here is the message.', '交通大學風弦盃 <windstring@guitar.nctu.me>',
+				['daipeinew@gmail.com'],html_message=msg, fail_silently=False)
 			return JsonResponse({'success':True})
 	else:
 		return JsonResponse({'success':False})
@@ -101,6 +109,13 @@ def confirmPay(request):
 		if notify_item and request.user.is_authenticated():
 			notify_item.pay_status=2
 			notify_item.save()
+			#send email
+			with open(settings.BASE_DIR+"/register/mail_templates/confirmPay.html","r") as f:
+				msg=f.read()
+				msg=msg.format(notify_item.contact,notify_item.category)
+				send_mail('風弦盃報名費-已確認款項', 'Here is the message.', '交通大學風弦盃 <windstring@guitar.nctu.me>',
+				[notify_item.email],html_message=msg, fail_silently=False)
+
 			return JsonResponse({'success':True})
 	else:
 		return JsonResponse({'success':False})
