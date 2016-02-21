@@ -1,6 +1,8 @@
 $(document).ready(function(){
 $('.ui.dropdown').dropdown();
 $('.reply').popup() ;
+$('.reply').popup() ;
+$('.ui.radio.checkbox') .checkbox() ;
 
 $('.ui.form') .form({
 		on:'blur',
